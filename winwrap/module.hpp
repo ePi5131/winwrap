@@ -12,7 +12,7 @@ namespace WinWrap {
 
         Module(std::wstring_view module_name) : m_mod(GetModuleHandleW(module_name.data())) {}
 
-        std::string GetFileNameA() const {
+        std::string getFileNameA() const {
             DWORD size;
             std::string buf;
             buf.resize(MAX_PATH);
@@ -22,7 +22,7 @@ namespace WinWrap {
             buf.resize(size);
             return buf;
         }
-        std::wstring GetFileNameW() const {
+        std::wstring getFileNameW() const {
             DWORD size;
             std::wstring buf;
             buf.resize(MAX_PATH);
@@ -33,6 +33,6 @@ namespace WinWrap {
             return buf;
         }
 
-        HMODULE GetHandle() const { return m_mod; }
+        HMODULE getHandle() const { return m_mod; }
     };
 } // namespace WinWrap
