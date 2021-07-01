@@ -8,6 +8,8 @@ namespace WinWrap {
     public:
         Module() : m_mod(NULL) {}
 
+        Module(HMODULE mod) : m_mod(mod) {}
+
         Module(std::string_view module_name) : m_mod(GetModuleHandleA(module_name.data())) {}
 
         Module(std::wstring_view module_name) : m_mod(GetModuleHandleW(module_name.data())) {}
@@ -34,5 +36,9 @@ namespace WinWrap {
         }
 
         HMODULE getHandle() const { return m_mod; }
+
+        FARPROC getProcAddress(std::string_view proc_name) const {
+            return GetProcAddress(m_mod, proc_name.data());
+        }
     };
 } // namespace WinWrap
