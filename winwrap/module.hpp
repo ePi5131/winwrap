@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 
 #include <Windows.h>
@@ -15,24 +16,30 @@ namespace WinWrap {
         Module(std::wstring_view module_name) : m_mod(GetModuleHandleW(module_name.data())) {}
 
         std::string getFileNameA() const {
-            DWORD size;
-            std::string buf;
-            buf.resize(MAX_PATH);
-            while (!(size = GetModuleFileNameA(m_mod, buf.data(), buf.size()))) {
-                buf.resize(buf.size() * 2);
+            std::string ret(260, '\0');
+            auto size = GetModuleFileNameA(m_mod, ret.data(), ret.size() + 1);
+            if (size == 0) return {};
+            while (size >= ret.size() + 1) {
+                if (GetLastError() != ERROR_INSUFFICIENT_BUFFER) return {};
+                ret.resize(ret.size() * 2);
+                size = GetModuleFileNameA(m_mod, ret.data(), ret.size() + 1);
+                if (size == 0) return {};
             }
-            buf.resize(size);
-            return buf;
+            ret.resize(size);
+            return ret;
         }
         std::wstring getFileNameW() const {
-            DWORD size;
-            std::wstring buf;
-            buf.resize(MAX_PATH);
-            while (!(size = GetModuleFileNameW(m_mod, buf.data(), buf.size()))) {
-                buf.resize(buf.size() * 2);
+            std::wstring ret(260, '\0');
+            auto size = GetModuleFileNameW(m_mod, ret.data(), ret.size() + 1);
+            if (size == 0) return {};
+            while (size >= ret.size() + 1) {
+                if (GetLastError() != ERROR_INSUFFICIENT_BUFFER) return {};
+                ret.resize(ret.size() * 2);
+                size = GetModuleFileNameW(m_mod, ret.data(), ret.size() + 1);
+                if (size == 0) return {};
             }
-            buf.resize(size);
-            return buf;
+            ret.resize(size);
+            return ret;
         }
 
         HMODULE getHandle() const { return m_mod; }
