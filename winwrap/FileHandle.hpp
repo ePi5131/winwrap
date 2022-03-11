@@ -14,14 +14,14 @@ namespace WinWrap {
         Write = GENERIC_WRITE,
         Execute = GENERIC_EXECUTE,
     };
-    struct WinWrap::detail::flag::ops_def<FileHandleAccess>:std::true_type{};
+    template<>struct WinWrap::detail::flag::ops_def<FileHandleAccess>:std::true_type{};
 
     enum class FileHandleShare : DWORD {
         Read = FILE_SHARE_READ,
         Write = FILE_SHARE_WRITE,
         Delete = FILE_SHARE_DELETE
     };
-    struct WinWrap::detail::flag::ops_def<FileHandleShare>:std::true_type{};
+    template<>struct WinWrap::detail::flag::ops_def<FileHandleShare>:std::true_type{};
 
     enum class FileHandleFlagsAndAttribute : DWORD {
         None = 0,
@@ -61,7 +61,7 @@ namespace WinWrap {
         Overlapped = FILE_FLAG_OVERLAPPED,
         WriteThrough = FILE_FLAG_WRITE_THROUGH
     };
-    struct WinWrap::detail::flag::ops_def<FileHandleFlagsAndAttribute>:std::true_type{};
+    template<>struct WinWrap::detail::flag::ops_def<FileHandleFlagsAndAttribute>:std::true_type{};
 
     enum class FileHandleCreationDisposition : DWORD {
         CreateNew = CREATE_NEW,

@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 #include <type_traits>
 #include <Windows.h>
@@ -49,9 +50,7 @@ namespace WinWrap {
         };
 
         template<GetWindowLongMode nIndex>
-        struct GetWindowLongRet {
-            using type = std::enable_if_t<false>;
-        };
+        struct GetWindowLongRet {};
         
         template<>
         struct GetWindowLongRet<GetWindowLongMode::WndProc> {
