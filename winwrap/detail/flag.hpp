@@ -2,7 +2,7 @@
 #include <type_traits>
 #include <concepts>
 
-namespace Winwrap {
+namespace WinWrap {
     namespace detail::flag {
         template<class T1, class T2 = T1>struct ops_def:std::false_type{};
 
@@ -46,16 +46,16 @@ namespace Winwrap {
     }
 }
 
-using Winwrap::detail::flag::operator!;
-using Winwrap::detail::flag::operator+;
-using Winwrap::detail::flag::operator~;
-using Winwrap::detail::flag::operator&;
-using Winwrap::detail::flag::operator|;
-using Winwrap::detail::flag::operator^;
-using Winwrap::detail::flag::operator&=;
-using Winwrap::detail::flag::operator|=;
-using Winwrap::detail::flag::operator^=;
-using Winwrap::detail::flag::has_flag;
-using Winwrap::detail::flag::has_flag_and;
-using Winwrap::detail::flag::has_flag_or;
-using Winwrap::detail::flag::masked_eq;
+using WinWrap::detail::flag::operator!;
+using WinWrap::detail::flag::operator+;
+using WinWrap::detail::flag::operator~;
+using WinWrap::detail::flag::operator&;
+using WinWrap::detail::flag::operator|;
+using WinWrap::detail::flag::operator^;
+using WinWrap::detail::flag::operator&=;
+using WinWrap::detail::flag::operator|=;
+using WinWrap::detail::flag::operator^=;
+using WinWrap::detail::flag::has_flag;
+using WinWrap::detail::flag::has_flag_and;
+using WinWrap::detail::flag::has_flag_or;
+using WinWrap::detail::flag::masked_eq;
