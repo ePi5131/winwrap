@@ -60,9 +60,7 @@ namespace WinWrap {
         template<GetWindowLongMode nIndex>
         using GetWindowLongRet_t = GetWindowLongRet<nIndex>::type;
 
-        template<GetWindowLongMode nIndex, class R = GetWindowLongRet_t<nIndex>> R getWindowLong() const {
-            static_assert(!std::is_same_v<int, int>, "invalid nIndex");
-        }
+        template<GetWindowLongMode nIndex, class R = GetWindowLongRet_t<nIndex>> R getWindowLong() const;
 
         WNDPROC getWindowLongWndProc() const {
             return reinterpret_cast<WNDPROC>(GetWindowLongA(m_hWnd, GWL_WNDPROC));
