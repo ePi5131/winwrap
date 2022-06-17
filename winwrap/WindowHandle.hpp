@@ -58,7 +58,7 @@ namespace WinWrap {
         };
 
         template<GetWindowLongMode nIndex>
-        using GetWindowLongRet_t = GetWindowLongRet<nIndex>::type;
+        using GetWindowLongRet_t = typename GetWindowLongRet<nIndex>::type;
 
         template<GetWindowLongMode nIndex, class R = GetWindowLongRet_t<nIndex>> R getWindowLong() const;
 
