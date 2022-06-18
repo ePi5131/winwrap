@@ -50,15 +50,7 @@ namespace WinWrap {
         };
 
         template<GetWindowLongMode nIndex>
-        struct GetWindowLongRet {};
-        
-        template<>
-        struct GetWindowLongRet<GetWindowLongMode::WndProc> {
-            using type = WNDPROC;
-        };
-
-        template<GetWindowLongMode nIndex>
-        using GetWindowLongRet_t = typename GetWindowLongRet<nIndex>::type;
+        using GetWindowLongRet_t = std::enable_if_t<(GetWindowLongMode::WndProc == nIndex), WNDPROC>;
 
         template<GetWindowLongMode nIndex, class R = GetWindowLongRet_t<nIndex>> R getWindowLong() const;
 
