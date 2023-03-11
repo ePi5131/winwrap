@@ -7,7 +7,7 @@ namespace WinWrap {
     class Module {
         HMODULE m_mod;
     public:
-        Module() : m_mod(NULL) {}
+        Module() : m_mod(GetModuleHandleW(NULL)) {}
 
         Module(HMODULE mod) : m_mod(mod) {}
 
