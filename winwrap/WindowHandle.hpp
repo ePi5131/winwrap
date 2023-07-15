@@ -32,10 +32,10 @@ namespace WinWrap {
             return buf;
         }
 
-        bool setWindowTextA(std::string_view str) const {
+        bool setWindowTextA(const std::string& str) const {
             return SetWindowTextA(m_hWnd, str.data());
         }
-        bool setWindowTextW(std::wstring_view str) const {
+        bool setWindowTextW(const std::wstring& str) const {
             return SetWindowTextW(m_hWnd, str.data());
         }
 
